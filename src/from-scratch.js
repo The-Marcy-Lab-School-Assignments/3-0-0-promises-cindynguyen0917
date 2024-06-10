@@ -9,13 +9,33 @@ const rejectedWrapper = (val) => {
   return Promise.reject(faulty)
 };
 
-const handleResolvedPromise = () => {
+const handleResolvedPromise = (promise) => {
+  return promise.then((val) => {
+    console.log(val)
+    return val
+  })
 };
 
-const handleResolvedOrRejectedPromise = () => {
+const handleResolvedOrRejectedPromise = (promise) => {
+
+  return promise
+    .then((val) => {
+      console.log(val)
+      return val
+    })
+    .catch((error) => {
+      new Error(error)
+      console.error(`Your error message was: ${error.message}`)
+      return null
+    })
 };
 
-const pauseForMs = () => {
+const pauseForMs = (secs) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, secs)
+  })
 };
 
 module.exports = {
